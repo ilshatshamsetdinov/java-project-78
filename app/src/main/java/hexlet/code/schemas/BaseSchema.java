@@ -5,15 +5,23 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class BaseSchema {
-    private final List<Predicate> validators = new ArrayList<>();
+    private final List<Predicate> conditions = new ArrayList<>();
+    private boolean isRequired;
 
-    public void setValidators(Predicate predicate) {
-        validators.add(predicate);
+    public void setRequired() {
+        isRequired = true;
+    }
+
+    public void addToConditionList(Predicate predicate) {
+        conditions.add(predicate);
     }
 
     public boolean isValid(Object o) {
-        for (Predicate validator : validators) {
-            if (!validator.test(o)) {
+        if (!isRequired) {
+            return true;
+        }
+        for (Predicate p : conditions) {
+            if (!p.test(o)) {
                 return false;
             }
         }
