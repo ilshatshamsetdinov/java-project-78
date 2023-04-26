@@ -15,7 +15,8 @@ public class NumberSchema extends BaseSchema {
         return this;
     }
     public NumberSchema range(int beginRange, int endRange) {
-        addToConditionList(x -> (Integer) x >= beginRange && (Integer) x <= endRange);
+        Predicate<Integer> predicate = x -> x >= beginRange && x <= endRange;
+        addToConditionList(predicate);
         return this;
     }
     @Override
