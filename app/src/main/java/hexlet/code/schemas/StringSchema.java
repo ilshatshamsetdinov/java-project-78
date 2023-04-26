@@ -4,7 +4,7 @@ public class StringSchema extends BaseSchema {
 
 
     public StringSchema required() {
-        addToConditionList(x -> x instanceof String && x != null && !x.equals(""));
+        addToConditionList(x -> x instanceof String && !isEmptyValue(x));
         setRequired();
         return this;
     }
@@ -15,8 +15,14 @@ public class StringSchema extends BaseSchema {
     }
 
     public StringSchema contains(String substring) {
-        addToConditionList(x -> x.toString().contains(substring));
+        addToConditionList(x -> ((String) x).contains(substring));
         return this;
     }
+
+    @Override
+    public boolean isEmptyValue(Object o) {
+        return o == null || o.equals("");
+    }
 }
+
 

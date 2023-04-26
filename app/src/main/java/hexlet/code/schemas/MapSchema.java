@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class MapSchema extends BaseSchema {
     public MapSchema required() {
-        addToConditionList(x -> x instanceof Map && x != null);
+        addToConditionList(x -> x instanceof Map && !isEmptyValue(x));
         setRequired();
         return this;
     }
@@ -20,5 +20,9 @@ public class MapSchema extends BaseSchema {
                 })
         );
         return this;
+    }
+    @Override
+    public boolean isEmptyValue(Object o) {
+        return o == null;
     }
 }
