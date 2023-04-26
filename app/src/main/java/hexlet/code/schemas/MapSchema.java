@@ -21,8 +21,9 @@ public class MapSchema extends BaseSchema {
         );
         return this;
     }
+
     @Override
     public boolean isEmptyValue(Object o) {
-        return o == null;
+        return super.isEmptyValue(o);
     }
 }

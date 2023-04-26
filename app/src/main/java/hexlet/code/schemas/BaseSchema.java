@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public abstract class BaseSchema  {
+public class BaseSchema  {
     private final List<Predicate> conditions = new ArrayList<>();
     private boolean isRequired;
 
@@ -14,7 +14,9 @@ public abstract class BaseSchema  {
     public void addToConditionList(Predicate predicate) {
         conditions.add(predicate);
     }
-    abstract boolean isEmptyValue(Object o);
+    public boolean isEmptyValue(Object o){
+        return o == null;
+    }
 
     public boolean isValid(Object o) {
         if (!isRequired && isEmptyValue(o))  {
