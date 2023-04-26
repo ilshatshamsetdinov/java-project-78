@@ -48,30 +48,27 @@ public class ValidatorTest {
     }
     @Test
     public void testNumberSchema() {
-        NumberSchema numberSchema = Validator.number();
-        assertTrue(numberSchema.isValid(null));
-        assertTrue(numberSchema.positive().isValid(null));
-        assertFalse(numberSchema.isValid(-10));
-        assertFalse(numberSchema.isValid(0));
-        numberSchema.range(5, 10);
-        assertTrue(numberSchema.isValid(5));
-        assertTrue(numberSchema.isValid(10));
-        assertFalse(numberSchema.isValid(4));
-        assertFalse(numberSchema.isValid(11));
-    }
-    @Test
-    public void testNumberSchemaRequired() {
-        NumberSchema numberSchema = Validator.number();
-        numberSchema.required();
-        assertFalse(numberSchema.isValid(null));
-        assertFalse(numberSchema.positive().isValid(null));
-        assertFalse(numberSchema.isValid(-10));
-        assertFalse(numberSchema.isValid("5"));
-        numberSchema.range(5, 10);
-        assertTrue(numberSchema.isValid(5));
-        assertTrue(numberSchema.isValid(10));
-        assertFalse(numberSchema.isValid(4));
-        assertFalse(numberSchema.isValid(11));
+        Validator v = new Validator();
+        NumberSchema schema = v.number();
+        final int min = 2;
+        final int max = 17;
+
+        assertTrue(schema.isValid(null));
+
+        schema.required();
+        assertFalse(schema.isValid(null));
+        assertFalse(schema.isValid("5"));
+        assertTrue(schema.isValid(10));
+
+        assertTrue(schema.positive().isValid(10));
+        assertFalse(schema.isValid(-10));
+
+        schema.range(min, max);
+        assertTrue(schema.isValid(2));
+        assertTrue(schema.isValid(16));
+        assertFalse(schema.isValid(19));
+        assertFalse(schema.isValid(-5));
+
     }
     @Test
     public void testMapSchema() {
