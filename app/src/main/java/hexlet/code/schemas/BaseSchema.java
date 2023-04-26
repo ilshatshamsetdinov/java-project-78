@@ -14,7 +14,7 @@ public class BaseSchema  {
     public void addToConditionList(Predicate predicate) {
         conditions.add(predicate);
     }
-    public boolean isEmptyValue(Object o){
+    public boolean isEmptyValue(Object o) {
         return o == null;
     }
 
