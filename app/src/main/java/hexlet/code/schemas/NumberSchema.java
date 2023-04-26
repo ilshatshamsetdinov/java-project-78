@@ -1,5 +1,7 @@
 package hexlet.code.schemas;
 
+import java.util.function.Predicate;
+
 public class NumberSchema extends BaseSchema {
 
     public NumberSchema required() {
@@ -8,7 +10,8 @@ public class NumberSchema extends BaseSchema {
         return this;
     }
     public NumberSchema positive() {
-        addToConditionList(x -> x == null || (Integer) x > 0);
+        Predicate<Integer> predicate = x -> x == null || x > 0;
+        addToConditionList(predicate);
         return this;
     }
     public NumberSchema range(int beginRange, int endRange) {
