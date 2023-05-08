@@ -22,9 +22,6 @@ public class BaseSchema  {
         if (!isRequired && isEmptyValue(o))  {
             return true;
         }
-        if (isRequired && o == null) {
-            return false;
-        }
         for (Predicate p : conditions) {
             if (!p.test(o)) {
                 return false;

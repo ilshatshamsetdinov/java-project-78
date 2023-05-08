@@ -1,10 +1,10 @@
 package hexlet.code.schemas;
 
 public class StringSchema extends BaseSchema {
-
-
-    public StringSchema required() {
+    public StringSchema() {
         addToConditionList(x -> x instanceof String && !isEmptyValue(x));
+    }
+    public StringSchema required() {
         setRequired();
         return this;
     }

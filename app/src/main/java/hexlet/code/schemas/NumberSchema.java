@@ -1,24 +1,21 @@
 package hexlet.code.schemas;
 
-import java.util.function.Predicate;
-
 public class NumberSchema extends BaseSchema {
-
-    public NumberSchema required() {
+    public NumberSchema() {
         addToConditionList(x -> x instanceof Integer && !isEmptyValue(x));
+    }
+    public NumberSchema required() {
         setRequired();
         return this;
     }
 
     public NumberSchema positive() {
-        Predicate<Integer> predicate = x -> x == null || x > 0;
-        addToConditionList(predicate);
+        addToConditionList(x -> ((Integer) x) > 0);
         return this;
     }
 
     public NumberSchema range(int beginRange, int endRange) {
-        Predicate<Integer> predicate = x -> x >= beginRange && x <= endRange;
-        addToConditionList(predicate);
+        addToConditionList(x -> ((Integer) x) >= beginRange && ((Integer) x) <= endRange);
         return this;
     }
 

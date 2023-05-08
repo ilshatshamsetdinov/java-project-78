@@ -3,8 +3,10 @@ package hexlet.code.schemas;
 import java.util.Map;
 
 public class MapSchema extends BaseSchema {
-    public MapSchema required() {
+    public MapSchema() {
         addToConditionList(x -> x instanceof Map && !isEmptyValue(x));
+    }
+    public MapSchema required() {
         setRequired();
         return this;
     }

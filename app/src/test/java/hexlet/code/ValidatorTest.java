@@ -21,7 +21,7 @@ public class ValidatorTest {
         assertTrue(stringSchema.isValid(null));
         assertTrue(stringSchema.isValid(""));
         assertTrue(stringSchema.isValid("what does the fox say"));
-        assertTrue(stringSchema.isValid(number));
+        assertFalse(stringSchema.isValid(number));
         stringSchema.minLength(number);
         assertTrue(stringSchema.isValid("what does the fox say"));
         assertTrue(stringSchema.contains("wh").isValid("what does the fox say"));
