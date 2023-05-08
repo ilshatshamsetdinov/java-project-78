@@ -21,6 +21,6 @@ public class NumberSchema extends BaseSchema {
 
     @Override
     public final boolean isEmptyValue(Object o) {
-        return super.isEmptyValue(o);
+        return o == null;
     }
 }
