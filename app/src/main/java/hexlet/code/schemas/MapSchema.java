@@ -6,11 +6,11 @@ public class MapSchema extends BaseSchema {
     public MapSchema() {
         addToConditionList(x -> x instanceof Map && !isEmptyValue(x));
     }
-    public MapSchema required() {
+    public final MapSchema required() {
         setRequired();
         return this;
     }
-    public MapSchema sizeof(int pairsCount) {
+    public final MapSchema sizeof(int pairsCount) {
         addToConditionList(x -> x instanceof Map && ((Map) x).size() == pairsCount);
         return this;
     }
@@ -25,7 +25,7 @@ public class MapSchema extends BaseSchema {
     }
 
     @Override
-    public boolean isEmptyValue(Object o) {
+    public final boolean isEmptyValue(Object o) {
         return super.isEmptyValue(o);
     }
 }

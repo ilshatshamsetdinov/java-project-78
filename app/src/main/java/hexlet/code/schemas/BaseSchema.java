@@ -8,17 +8,17 @@ public class BaseSchema  {
     private final List<Predicate> conditions = new ArrayList<>();
     private boolean isRequired;
 
-    public void setRequired() {
+    public final void setRequired() {
         isRequired = true;
     }
-    public void addToConditionList(Predicate predicate) {
+    public final void addToConditionList(Predicate predicate) {
         conditions.add(predicate);
     }
-    public boolean isEmptyValue(Object o) {
+    protected boolean isEmptyValue(Object o) {
         return o == null;
     }
 
-    public boolean isValid(Object o) {
+    public final boolean isValid(Object o) {
         if (!isRequired && isEmptyValue(o))  {
             return true;
         }
